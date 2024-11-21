@@ -24,14 +24,14 @@ std::vector<Triangulation> TransformationManager::transformObject(std::vector<Tr
     Triangulation reverseRotationTriangulation2;
     Triangulation reverseTranslationTriangulation2;
 
-    Geometry::Triangle triangle1 = triangulation[0].Triangles[0];
-    Geometry::Triangle triangle2 = triangulation[1].Triangles[0];
+    Triangle triangle1 = triangulation[0].Triangles[0];
+    Triangle triangle2 = triangulation[1].Triangles[0];
 
-    Geometry::Point firstNormalPoint = triangle1.Normal();
-    Geometry::RealPoint firstNormal = triangulation[0].getRealPoint(firstNormalPoint);
+    Point firstNormalPoint = triangle1.Normal();
+    RealPoint firstNormal = triangulation[0].getRealPoint(firstNormalPoint);
 
-    Geometry::Point secondNormalPoint = triangle2.Normal();
-    Geometry::RealPoint secondNormal = triangulation[1].getRealPoint(secondNormalPoint);
+    Point secondNormalPoint = triangle2.Normal();
+    RealPoint secondNormal = triangulation[1].getRealPoint(secondNormalPoint);
 
 
     double angle1 = mesh.getAngleBetweenNormalAndXAxis(firstNormal);
