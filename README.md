@@ -1,4 +1,4 @@
-# Mesh Boolean Operations - Proof of Concept
+# Mesh Boolean  - Proof of Concept
 
 This repository demonstrates boolean operations on 3D meshes. It includes core functionalities and visualization tools to illustrate the results.
 
