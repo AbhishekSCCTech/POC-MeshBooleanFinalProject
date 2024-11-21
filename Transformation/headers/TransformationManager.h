@@ -1,9 +1,7 @@
 #pragma once
 #include "Triangulation.h"
 #include "Transformation.h"
-#include "RealPoint.h"
 #include "MeshUtility.h"
-#include "Matrix4x4.h"
 using namespace Geometry;
 
 
