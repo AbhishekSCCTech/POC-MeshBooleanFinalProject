@@ -10,11 +10,6 @@ Matrix4x4::~Matrix4x4()
 {
 }
 
-void Geometry::Matrix4x4::setval(double value, int x, int y)
-{
-	matrix[x][y] = value;
-}
-
 std::vector<double> Matrix4x4::multiply(double _x, double _y, double _z)
 {
 

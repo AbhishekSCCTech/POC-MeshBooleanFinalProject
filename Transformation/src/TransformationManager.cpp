@@ -14,15 +14,15 @@ TransformationManager::~TransformationManager()
 
 std::vector<Triangulation> TransformationManager::transformObject(std::vector<Triangulation>& triangulation)
 {
-    Triangulation TranslationTriangulation;
-    Triangulation RotationTriangulation;
-    Triangulation ReverseRotationTriangulation;
-    Triangulation ReverseTranslationTriangulation;
+    Triangulation translationTriangulation;
+    Triangulation rotationTriangulation;
+    Triangulation reverseRotationTriangulation;
+    Triangulation reverseTranslationTriangulation;
 
-    Triangulation TranslationTriangulation2;
-    Triangulation RotationTriangulation2;
-    Triangulation ReverseRotationTriangulation2;
-    Triangulation ReverseTranslationTriangulation2;
+    Triangulation translationTriangulation2;
+    Triangulation rotationTriangulation2;
+    Triangulation reverseRotationTriangulation2;
+    Triangulation reverseTranslationTriangulation2;
 
     Geometry::Triangle triangle1 = triangulation[0].Triangles[0];
     Geometry::Triangle triangle2 = triangulation[1].Triangles[0];
@@ -48,8 +48,8 @@ std::vector<Triangulation> TransformationManager::transformObject(std::vector<Tr
     RealPoint firstRealPoint3 = triangulation[0].getRealPoint(firstTriangleP3);
     Geometry::RealPoint avgFirstTriangle = mesh.averagePoint(firstRealPoint1, firstRealPoint2, firstRealPoint3);
   
-    TranslationTriangulation = t.translation(triangulation[0], -(avgFirstTriangle.X()), -(avgFirstTriangle.Y()), -(avgFirstTriangle.Z()));
-    RotationTriangulation = t.rotation_x(TranslationTriangulation, -angle1);
+    translationTriangulation = t.translation(triangulation[0], -(avgFirstTriangle.X()), -(avgFirstTriangle.Y()), -(avgFirstTriangle.Z()));
+    rotationTriangulation = t.rotationX(translationTriangulation, -angle1);
 
     // Second Triangle average
     Point secondTriangleP1 = triangle2.P1();
@@ -62,17 +62,17 @@ std::vector<Triangulation> TransformationManager::transformObject(std::vector<Tr
     Geometry::RealPoint avgSecondTriangle = mesh.averagePoint(secondRealPoint1, secondRealPoint2, secondRealPoint3);
 
 
-    TranslationTriangulation2 = t.translation(triangulation[1], -(avgSecondTriangle.X()), -(avgSecondTriangle.Y()), -(avgSecondTriangle.Z()));
-    RotationTriangulation2 = t.rotation_x(TranslationTriangulation2, -angle2);
+    translationTriangulation2 = t.translation(triangulation[1], -(avgSecondTriangle.X()), -(avgSecondTriangle.Y()), -(avgSecondTriangle.Z()));
+    rotationTriangulation2 = t.rotationX(translationTriangulation2, -angle2);
     
-    ReverseRotationTriangulation = t.rotation_x(TranslationTriangulation, angle1);
-    ReverseRotationTriangulation2 = t.rotation_x(TranslationTriangulation2, angle1);
+    reverseRotationTriangulation = t.rotationX(translationTriangulation, angle1);
+    reverseRotationTriangulation2 = t.rotationX(translationTriangulation2, angle1);
 
-    ReverseTranslationTriangulation = t.translation(ReverseRotationTriangulation, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
-    ReverseTranslationTriangulation2 = t.translation(ReverseRotationTriangulation2, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
+    reverseTranslationTriangulation = t.translation(reverseRotationTriangulation, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
+    reverseTranslationTriangulation2 = t.translation(reverseRotationTriangulation2, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
     std::vector<Triangulation> resultTriangulation;
-    resultTriangulation.push_back(ReverseTranslationTriangulation);
-    resultTriangulation.push_back(ReverseTranslationTriangulation2);
+    resultTriangulation.push_back(reverseTranslationTriangulation);
+    resultTriangulation.push_back(reverseTranslationTriangulation2);
 
     return resultTriangulation;
 }

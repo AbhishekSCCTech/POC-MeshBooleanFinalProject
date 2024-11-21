@@ -7,9 +7,7 @@
 #include "OBJWriter.h"
 #include "STLWriter.h"
 #include "DataWriter.h"
-#include "Triangulation.h"
 #include "MeshUtility.h"
-#include "RealPoint.h"
 #include "TransformationManager.h"
 
 

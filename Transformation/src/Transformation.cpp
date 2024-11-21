@@ -30,7 +30,10 @@ Triangulation Transformation::Transformation::scaling(Triangulation& triangulati
         tempvect.push_back(tri.Normal());
         for (Point pt : tempvect)
         {
-            nmatrix = matrix.multiply(triangulation.UniqueNumbers[pt.X()], triangulation.UniqueNumbers[pt.Y()], triangulation.UniqueNumbers[pt.Z()]);
+            double xm = triangulation.UniqueNumbers[pt.X()];
+            double ym = triangulation.UniqueNumbers[pt.Y()];
+            double zm = triangulation.UniqueNumbers[pt.Z()];
+            nmatrix = matrix.multiply(xm, ym, zm);
             int pts[3];
             for (int i = 0; i < 3; i++)
             {
@@ -74,7 +77,10 @@ Triangulation Transformation::Transformation::translation(Triangulation& triangu
         tempvect.push_back(tri.Normal());
         for (Point pt : tempvect)
         {
-            nmatrix = matrix.multiply(triangulation.UniqueNumbers[pt.X()], triangulation.UniqueNumbers[pt.Y()], triangulation.UniqueNumbers[pt.Z()]);
+            double xm = triangulation.UniqueNumbers[pt.X()];
+            double ym = triangulation.UniqueNumbers[pt.Y()];
+            double zm = triangulation.UniqueNumbers[pt.Z()];
+            nmatrix = matrix.multiply(xm, ym,zm);
             int pts[3];
             for (int i = 0; i < 3; i++)
             {
@@ -100,7 +106,7 @@ Triangulation Transformation::Transformation::translation(Triangulation& triangu
     return newtriangulation;
 }
 
-Triangulation Transformation::Transformation::rotation_x(Triangulation& triangulation, double rotate_x)
+Triangulation Transformation::Transformation::rotationX(Triangulation& triangulation, double rotate_x)
 {
     std::vector<double> nmatrix{ 0.0,0.0,0.0,0.0 };
     std::vector<Point> vertices;
@@ -119,7 +125,10 @@ Triangulation Transformation::Transformation::rotation_x(Triangulation& triangul
         tempvect.push_back(tri.Normal());
         for (Point pt : tempvect)
         {
-            nmatrix = matrix.multiply(triangulation.UniqueNumbers[pt.X()], triangulation.UniqueNumbers[pt.Y()], triangulation.UniqueNumbers[pt.Z()]);
+            double xm = triangulation.UniqueNumbers[pt.X()];
+            double ym = triangulation.UniqueNumbers[pt.Y()];
+            double zm = triangulation.UniqueNumbers[pt.Z()];
+            nmatrix = matrix.multiply(xm, ym, zm);
             int pts[3];
             for (int i = 0; i < 3; i++)
             {
@@ -145,7 +154,7 @@ Triangulation Transformation::Transformation::rotation_x(Triangulation& triangul
     return newtriangulation;
 }
 
-Triangulation Transformation::Transformation::rotation_y(Triangulation& triangulation, double rotate_y)
+Triangulation Transformation::Transformation::rotationY(Triangulation& triangulation, double rotate_y)
 {
     std::vector<double> nmatrix{ 0.0,0.0,0.0,0.0 };
     std::vector<Point> vertices;
@@ -190,7 +199,7 @@ Triangulation Transformation::Transformation::rotation_y(Triangulation& triangul
     return newtriangulation;
 }
 
-Triangulation Transformation::Transformation::rotation_z(Triangulation& triangulation, double rotate_z)
+Triangulation Transformation::Transformation::rotationZ(Triangulation& triangulation, double rotate_z)
 {
     std::vector<double> nmatrix{ 0.0,0.0,0.0,0.0 };
     std::vector<Point> vertices;
