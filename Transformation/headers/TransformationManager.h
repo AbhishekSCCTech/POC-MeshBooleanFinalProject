@@ -1,17 +1,16 @@
 #pragma once
 #include "Triangulation.h"
 #include "Transformation.h"
-#include "MeshUtility.h"
+#include "VectorUtility.h"
 using namespace Geometry;
 
 
-	class TransformationManager
-	{
-	public:
-		TransformationManager();
-		~TransformationManager();
-		MeshUtility mesh;
-		Transformation::Transformation t;
-		std::vector<Triangulation> transformObject(std::vector<Triangulation>& triangulation);
-
-	};
+class TransformationManager
+{
+public:
+	TransformationManager();
+	~TransformationManager();
+	VectorUtility vectorUtility;
+	Transformation::Transformation transformation;
+	std::vector<Triangulation> transformObject(std::vector<Triangulation>& triangulation);
+};
