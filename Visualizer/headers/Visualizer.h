@@ -7,7 +7,7 @@
 #include "Triangulation.h"
 #include "Transformation.h"
 #include "OpenGlWidget.h"
-#include "MeshUtility.h"
+#include "VectorUtility.h"
 #include "GraphicsSynchronizer.h"
 
 using namespace Geometry;
@@ -56,11 +56,9 @@ private:
     OpenGlWidget* openglWidgetOutput;
 
     GraphicsSynchronizer* graphicsSynchronizer;
-    MeshUtility mesh;
+    VectorUtility vectorUtility;
 
     QVector<GLfloat> vertices;
-
-
 
     // translation data
     QString inputFilePath;

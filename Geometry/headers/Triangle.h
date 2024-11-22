@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "point.h"
+#include "RealPoint.h"
 
 
 
@@ -26,6 +27,7 @@ namespace Geometry
         Point Normal();
 
         std::vector<Point> Points();
+        RealPoint triangleCentroid(RealPoint& p1, RealPoint& p2, RealPoint& p3);
         bool operator==(const Triangle& other) const;
         
 

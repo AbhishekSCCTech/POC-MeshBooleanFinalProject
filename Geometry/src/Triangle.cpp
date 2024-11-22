@@ -42,7 +42,15 @@ Point Triangle::Normal()
     return normal;
 }
 
+RealPoint Geometry::Triangle::triangleCentroid(RealPoint& p1, RealPoint& p2, RealPoint& p3)
+{
+    double avgX = (p1.X() + p2.X() + p3.X()) / 3;
+    double avgY = (p1.Y() + p2.Y() + p3.Y()) / 3;
+    double avgZ = (p1.Z() + p2.Z() + p3.Z()) / 3;
 
+    RealPoint avgPoint(avgX, avgY, avgZ);
+    return avgPoint;
+}
 
 bool Triangle::operator==(const Triangle& other) const
 {

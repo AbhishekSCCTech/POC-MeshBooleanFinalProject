@@ -7,7 +7,8 @@
 #include "OBJWriter.h"
 #include "STLWriter.h"
 #include "DataWriter.h"
-#include "MeshUtility.h"
+#include "VectorUtility.h"
+#include "Matrix4x4.h"
 #include "TransformationManager.h"
 
 
@@ -75,8 +76,8 @@ void  Visualizer::onLoadFirstFileClick()
             reader.read(inputFilePath.toStdString(), triangulation);
         }
         OpenGlWidget::Data data = convertTrianglulationToGraphicsObject(triangulation);
-        QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data };
-        openglWidgetFirstInput->setData(dataList);
+    /*    QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data };*/
+        openglWidgetFirstInput->addObject(data);
     }
 }
 
@@ -99,8 +100,8 @@ void Visualizer::onLoadSecondFileClick()
             reader.read(inputFilePath.toStdString(), triangulation2);
         }
         OpenGlWidget::Data data = convertTrianglulationToGraphicsObject(triangulation2);
-        QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data };
-        openglWidgetSecondInput->setData(dataList);
+       /* QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data };*/
+        openglWidgetSecondInput->addObject(data);
     }
 }
 
@@ -144,22 +145,17 @@ void Visualizer::onJoinClick()
         tri.push_back(triangulation2);
         std::vector<Triangulation> result = manager.transformObject(tri);
        
-       
+      
         OpenGlWidget::Data data3 = convertTrianglulationToGraphicsObject(result[0]);
         OpenGlWidget::Data data4 = convertTrianglulationToGraphicsObject(result[1]);
-      
-        //for (auto i : data4.normals)
-        //{
-        //    data3.normals.append(i);
-        //}
-        //for (auto j : data4.vertices)
-        //{
-        //    data3.vertices.append(j);
-        //}
-        
-        QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data3, data4 };
-        openglWidgetOutput->setData(dataList);
+              
+        //QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data3, data4 };
+        //openglWidgetOutput->setData(dataList);
+        openglWidgetOutput->addObject(data3);
+        openglWidgetOutput->addObject(data4);
+
     }
+
     else if (inputFilePath.endsWith(".obj", Qt::CaseInsensitive))
     {
         QString exportFileName = dir + "/output.stl";
@@ -181,18 +177,11 @@ void Visualizer::onJoinClick()
         OpenGlWidget::Data data3 = convertTrianglulationToGraphicsObject(result1[0]);
         OpenGlWidget::Data data4 = convertTrianglulationToGraphicsObject(result1[1]);
 
-        
-   /*     for (auto i : data4.normals)
-        {
-            data3.normals.append(i); 
-        }
-        for (auto j : data4.vertices)
-        {
-            data3.vertices.append(j);
-        }*/
+       /* QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data3, data4 };
+        openglWidgetOutput->setData(dataList);*/
 
-        QVector< OpenGlWidget::Data> dataList = QVector< OpenGlWidget::Data>{ data3, data4 };
-        openglWidgetOutput->setData(dataList);
+        openglWidgetOutput->addObject(data3);
+        openglWidgetOutput->addObject(data4);
     }
 }
 
